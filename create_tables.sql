@@ -28,11 +28,10 @@ create table fb_comment (
 
 create table fb_reaction (
 
-    id                  text,
-    post_id             text,
     user_id             text,
+    post_id             text,
     reaction_type       text,
 
-    primary key (id)
+    primary key (user_id, post_id)
 );
 
