@@ -9,7 +9,7 @@ API Reference: https://developers.facebook.com/docs/graph-api/reference
 import dataset
 import facebook
 
-from . import config
+import config
 
 access_token = '{}|{}'.format(config.app_id, config.app_secret)
 
@@ -80,10 +80,12 @@ def get_reactions(post_id):
     try:
         for r in reactions:
             table.upsert(dict(
-                id=r['id'],
                 post_id=post_id,
+                user_id=r['id'],
                 reaction_type=r['type'],
-            ), keys=['id'])
+            ),
+            keys=['user_id', 'post_id'],
+        )
     except:
         print('error')
 
